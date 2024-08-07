@@ -24,7 +24,7 @@ This script is meant for use with Discord Bot Maker to delete all channels in a 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/discord-channel-deletion-script.git
+    git clone [[https://github.com/yourusername/discord-channel-deletion-script.git](https://github.com/Djessy-vd/DBM-delete-all-channels-discord.git)](https://github.com/Djessy-vd/DBM-delete-all-channels-discord)](https://github.com/Djessy-vd/DBM-delete-all-channels-discord)
     cd discord-channel-deletion-script
     ```
 
